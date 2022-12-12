@@ -1,30 +1,37 @@
 import pkg from "../package.json";
 import importAsString from "@reactioncommerce/api-utils/importAsString.js";
 import _ from "lodash";
-import Query from "./resolvers/Query.js";
-import Mutation from "./resolvers/Mutations.js";
-import Subscription from "./resolvers/Subscription.js";
+// import Query from "./resolvers/Query.js";
+// import Mutation from "./resolvers/Mutations.js";
+// import Subscription from "./resolvers/Subscription.js";
 const mySchema = importAsString("./schema.graphql");
 
 var _context = null;
 
 const resolvers = {
-  Query,
-  Mutation,
-  Subscription
+  // Query,
+  // Mutation,
+  // Subscription
  
 };
 
 function StartUp(context) {
-  _context = context;
+  // _context = context;
   const { app, collections, rootUrl } = context;
-  // context.simpleSchemas.Profile.extend({
-    
-  //   slug: {
-  //     type: String,
-  //     optional: true,
-  //   },
-  // });
+  context.simpleSchemas.Account.extend({
+    dob: {
+      type: String,
+      label:"DOB",
+      optional: true,
+    },
+    phone: {
+      label:"Phone",
+      type: String,
+      optional: true,
+    },
+  });
+  // console.log("context.simpleSchemas.Account",context.simpleSchemas.Account)
+
 }
 
 /**
@@ -56,7 +63,7 @@ export default async function register(app) {
     },
     graphQL: {
       schemas: [mySchema],
-      resolvers,
+      // resolvers,
     },
   });
 }

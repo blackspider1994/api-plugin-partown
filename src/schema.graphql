@@ -1,9 +1,9 @@
+extend type Account {
+    dob:String  
+}
 
-extend type Query {
-  
-}
-extend type Subscription {
-  
-}
-extend type Mutation {
+extend input UpdateAccountInput {
+    dob:String  
+    phone:String
+
 }
