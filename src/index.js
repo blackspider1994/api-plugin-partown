@@ -22,18 +22,18 @@ function StartUp(context) {
 
   const { app, collections, rootUrl } = context;
 
-  context.simpleSchemas.Account.extend({
-    "dob": {
-      type: String,
-      label:"dob",
-      optional: true
-    },
-    "phone": {
-      label:"phone",
-      type: String,
-      optional: true
-    }
-  });
+  // context.simpleSchemas.Account.extend({
+  //   "dob": {
+  //     type: String,
+  //     label:"dob",
+  //     optional: true
+  //   },
+  //   "phone": {
+  //     label:"phone",
+  //     type: String,
+  //     optional: true
+  //   }
+  // });
 
 }
 
@@ -62,7 +62,7 @@ export default async function register(app) {
     //   },
     // },
     functionsByType: {
-      // preStartup: [extendAccountSchema],
+      preStartup: [extendAccountSchema],
 
       startup: [StartUp],
     },
