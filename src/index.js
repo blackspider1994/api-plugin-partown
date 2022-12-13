@@ -1,6 +1,8 @@
 import pkg from "../package.json";
 import importAsString from "@reactioncommerce/api-utils/importAsString.js";
 import _ from "lodash";
+import extendAccountSchema from "./preStartup/extendAccountSchema.js";
+
 // import Query from "./resolvers/Query.js";
 // import Mutation from "./resolvers/Mutations.js";
 // import Subscription from "./resolvers/Subscription.js";
@@ -17,20 +19,21 @@ const resolvers = {
 
 function StartUp(context) {
   // _context = context;
+
   const { app, collections, rootUrl } = context;
+
   context.simpleSchemas.Account.extend({
-    dob: {
+    "dob": {
       type: String,
-      label:"DOB",
-      optional: true,
+      label:"dob",
+      optional: true
     },
-    phone: {
-      label:"Phone",
+    "phone": {
+      label:"phone",
       type: String,
-      optional: true,
-    },
+      optional: true
+    }
   });
-  // console.log("context.simpleSchemas.Account",context.simpleSchemas.Account)
 
 }
 
@@ -59,6 +62,8 @@ export default async function register(app) {
     //   },
     // },
     functionsByType: {
+      // preStartup: [extendAccountSchema],
+
       startup: [StartUp],
     },
     graphQL: {

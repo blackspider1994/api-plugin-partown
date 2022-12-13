@@ -1,5 +1,7 @@
 extend type Account {
     dob:String  
+    phone:String
+
 }
 
 extend input UpdateAccountInput {
